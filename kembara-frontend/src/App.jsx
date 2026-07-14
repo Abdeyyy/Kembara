@@ -61,7 +61,7 @@ function App() {
             </div>
             <div className="flex items-center gap-4">
               <button className="hidden sm:inline-block bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
-                Register Now
+                Daftar Sekarang
               </button>
               <button className="md:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur">
                 <Menu size={24} />
@@ -74,11 +74,11 @@ function App() {
         <div className="relative z-10 flex flex-col justify-center h-full px-4 md:px-8 max-w-7xl mx-auto -mt-20">
           <ScrollReveal delay={300}>
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
-              Overseas<br />Holiday<br />Solutions.
+              Nikmati<br />Liburan<br />Impianmu.
             </h1>
             <div>
               <button className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg">
-                Get Started
+                Mulai Jelajahi
               </button>
             </div>
           </ScrollReveal>
@@ -91,7 +91,7 @@ function App() {
           <div className="mb-4 text-xs font-semibold tracking-wider text-gray-500">TOUR</div>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
             <h2 className="text-3xl md:text-5xl font-bold max-w-xl leading-tight">
-              Come here and explore the beautiful places here.
+              Jelajahi Destinasi Terbaik Yogyakarta.
             </h2>
             <button className="bg-primary text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-secondary transition w-full md:w-auto">
               Explore more
@@ -137,10 +137,10 @@ function App() {
           <div className="mb-4 text-xs font-semibold tracking-wider text-gray-500">EXPLORE</div>
           <div className="flex flex-col md:flex-row justify-between mb-12 gap-4 md:gap-8">
             <h2 className="text-3xl md:text-5xl font-bold max-w-lg leading-tight">
-              Our tailored destinations just for you
+              Temukan Destinasi Pilihan Sesuai Gayamu.
             </h2>
             <p className="text-gray-500 max-w-sm text-sm">
-              Experience the difference with our exceptional and personalized service! We prioritize each customer's unique needs
+              Jelajahi keindahan Yogyakarta melalui berbagai pilihan destinasi yang telah kami kurasi untuk menghadirkan pengalaman wisata yang nyaman dan berkesan.
             </p>
           </div>
 
@@ -186,9 +186,9 @@ function App() {
         <ScrollReveal>
           <div className="max-w-7xl mx-auto text-center">
             <div className="mb-4 text-xs font-semibold tracking-wider text-primary">DESTINATION</div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Discover our most popular tours!</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Destinasi Favorit!</h2>
             <p className="text-gray-500 max-w-xl mx-auto mb-10 text-sm md:text-base">
-              We recommend several beautiful tourist attractions in certain countries, please choose your favorite tourist attraction.
+              Rekomendasi Destinasi Terbaik di Yogyakarta.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-left mb-12">
@@ -237,7 +237,7 @@ function App() {
             </div>
             <div className="flex-1 w-full mt-6 md:mt-0">
               <div className="mb-4 text-xs font-semibold tracking-wider text-gray-500">HOW IT WORKS</div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12">Ticket ordering process</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12">Proses pembelian tiket</h2>
 
               <div className="space-y-6">
                 {[
