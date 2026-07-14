@@ -9,10 +9,13 @@ function ScrollReveal({ children, delay = 0 }) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsVisible(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target); // animasi hanya sekali, tidak berulang
+          }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
     
     if (domRef.current) observer.observe(domRef.current);
@@ -24,7 +27,9 @@ function ScrollReveal({ children, delay = 0 }) {
       ref={domRef}
       style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
       className={`w-full ${
-        isVisible ? 'opacity-100 translate-y-0 transition-all duration-1000 ease-out' : 'opacity-0 translate-y-16 transition-none'
+        isVisible
+          ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out'
+          : 'opacity-0 translate-y-10'
       }`}
     >
       {children}
