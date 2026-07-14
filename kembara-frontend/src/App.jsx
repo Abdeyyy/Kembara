@@ -2,22 +2,35 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Search, MapPin, Star, Mail, Phone, Linkedin, Instagram, Facebook, Globe, Menu } from 'lucide-react';
 
 function ScrollReveal({ children, delay = 0 }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [state, setState] = useState({ visible: false, animate: false });
   const domRef = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const rect = entry.boundingClientRect;
+
           if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target); // animasi hanya sekali, tidak berulang
+            if (rect.top >= 0) {
+              // Elemen masuk dari bawah (scroll ke bawah) → animasi
+              setState({ visible: true, animate: true });
+            } else {
+              // Elemen masuk dari atas (scroll ke atas) → tampil langsung tanpa animasi
+              setState({ visible: true, animate: false });
+            }
+          } else {
+            if (rect.top > 0) {
+              // Elemen keluar ke bawah (scroll ke atas melewatinya) → reset, animasi muncul lagi
+              setState({ visible: false, animate: false });
+            }
+            // Elemen keluar ke atas (scroll ke bawah melewatinya) → biarkan tetap terlihat
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.1 }
     );
-    
+
     if (domRef.current) observer.observe(domRef.current);
     return () => observer.disconnect();
   }, []);
@@ -25,11 +38,13 @@ function ScrollReveal({ children, delay = 0 }) {
   return (
     <div
       ref={domRef}
-      style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+      style={{ transitionDelay: (state.visible && state.animate) ? `${delay}ms` : '0ms' }}
       className={`w-full ${
-        isVisible
+        !state.visible
+          ? 'opacity-0 translate-y-10'
+          : state.animate
           ? 'opacity-100 translate-y-0 transition-all duration-700 ease-out'
-          : 'opacity-0 translate-y-10'
+          : 'opacity-100 translate-y-0'
       }`}
     >
       {children}
@@ -117,7 +132,7 @@ function App() {
             {/* Card 2 */}
             <div className="group cursor-pointer">
               <div className="h-80 w-full rounded-3xl overflow-hidden mb-4">
-                <img src="/images/pantai parangtritis.jpg" alt="Parangtritis" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                <img src="/images/pantai parangtritis.jpg" alt="Parangtritis" className="w-full h-full object-cover object-bottom group-hover:scale-105 transition duration-500" />
               </div>
               <div className="flex justify-between items-center font-bold px-2">
                 <span className="text-lg">Pantai Parangtritis</span>
