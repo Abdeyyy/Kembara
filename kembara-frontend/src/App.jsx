@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, MapPin, Star, Mail, Phone, Linkedin, Instagram, Facebook, Globe, Menu } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { MapPin, Star, Mail, Phone, Linkedin, Instagram, Facebook, Globe, Menu } from 'lucide-react';
 
 function ScrollReveal({ children, delay = 0 }) {
   const [state, setState] = useState({ visible: false, animate: false });
@@ -53,6 +54,7 @@ function ScrollReveal({ children, delay = 0 }) {
 }
 
 function App() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -80,7 +82,10 @@ function App() {
               <a href="#" className="hover:text-gray-200">Contact</a>
             </div>
             <div className="flex items-center gap-4">
-              <button className="hidden sm:inline-block bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+              <button
+                onClick={() => navigate('/destination/malioboro')}
+                className="hidden sm:inline-block bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
+              >
                 Daftar Sekarang
               </button>
               <button className="md:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur">
@@ -97,7 +102,10 @@ function App() {
               Nikmati<br />Liburan<br />Impianmu.
             </h1>
             <div>
-              <button className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg">
+              <button
+                onClick={() => document.getElementById('tour-section').scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg"
+              >
                 Mulai Jelajahi
               </button>
             </div>
@@ -106,14 +114,17 @@ function App() {
       </section>
 
       {/* Tour Section */}
-      <section className="py-16 md:py-20 px-4 md:px-8 max-w-7xl mx-auto">
+      <section id="tour-section" className="py-16 md:py-20 px-4 md:px-8 max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="mb-4 text-xs font-semibold tracking-wider text-gray-500">TOUR</div>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-            <h2 className="text-3xl md:text-5xl font-bold max-w-xl leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold max-w-xl leading-tight"> 
               Jelajahi Destinasi Terbaik Yogyakarta.
             </h2>
-            <button className="bg-primary text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-secondary transition w-full md:w-auto">
+            <button
+              onClick={() => document.getElementById('destination-section').scrollIntoView({ behavior: 'smooth' })}
+              className="bg-primary text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-secondary transition w-full md:w-auto"
+            >
               Explore more
               <span>→</span>
             </button>
@@ -121,30 +132,33 @@ function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-sm">
             {/* Card 1 */}
-            <div className="group cursor-pointer">
+            <div className="group cursor-pointer" onClick={() => navigate('/destination/candi-prambanan')}>
               <div className="h-80 w-full rounded-3xl overflow-hidden mb-4">
                 <img src="/images/Candi Prambanan.jpg" alt="Prambanan" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               </div>
               <div className="flex justify-between items-center font-bold px-2">
                 <span className="text-lg">Candi Prambanan</span>
+                <span className="text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition">Lihat →</span>
               </div>
             </div>
             {/* Card 2 */}
-            <div className="group cursor-pointer">
+            <div className="group cursor-pointer" onClick={() => navigate('/destination/pantai-parangtritis')}>
               <div className="h-80 w-full rounded-3xl overflow-hidden mb-4">
                 <img src="/images/pantai parangtritis.jpg" alt="Parangtritis" className="w-full h-full object-cover object-bottom group-hover:scale-105 transition duration-500" />
               </div>
               <div className="flex justify-between items-center font-bold px-2">
                 <span className="text-lg">Pantai Parangtritis</span>
+                <span className="text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition">Lihat →</span>
               </div>
             </div>
             {/* Card 3 */}
-            <div className="group cursor-pointer">
+            <div className="group cursor-pointer" onClick={() => navigate('/destination/keraton-yogyakarta')}>
               <div className="h-80 w-full rounded-3xl overflow-hidden mb-4">
                 <img src="/images/Keraton.jpg" alt="Keraton Yogyakarta" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               </div>
               <div className="flex justify-between items-center font-bold px-2">
                 <span className="text-lg">Keraton Yogyakarta</span>
+                <span className="text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition">Lihat →</span>
               </div>
             </div>
           </div>
@@ -165,36 +179,36 @@ function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group">
+            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group cursor-pointer" onClick={() => navigate('/destination/candi-prambanan')}>
               <img src="/images/wisata.jpg" alt="Air Terjun" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                 <span className="text-white text-2xl font-semibold">Air Terjun</span>
-                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">See Details</button>
+                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 active:scale-95 transition">See Details</button>
               </div>
             </div>
-            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group">
+            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group cursor-pointer" onClick={() => navigate('/destination/pantai-parangtritis')}>
               <img src="/images/pantai.jpg" alt="Pantai" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                 <span className="text-white text-2xl font-semibold">Pantai</span>
-                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">See Details</button>
+                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 active:scale-95 transition">See Details</button>
               </div>
             </div>
-            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group">
+            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group cursor-pointer" onClick={() => navigate('/destination/candi-prambanan')}>
               <img src="/images/candi.jpg" alt="Candi" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                 <span className="text-white text-2xl font-semibold">Candi</span>
-                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">See Details</button>
+                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 active:scale-95 transition">See Details</button>
               </div>
             </div>
-            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group">
+            <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden group cursor-pointer" onClick={() => navigate('/destination/keraton-yogyakarta')}>
               <img src="/images/museum.jpg" alt="Museum" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                 <span className="text-white text-2xl font-semibold">Museum</span>
-                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">See Details</button>
+                <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 active:scale-95 transition">See Details</button>
               </div>
             </div>
           </div>
@@ -202,7 +216,7 @@ function App() {
       </section>
 
       {/* Destination Section */}
-      <section className="py-16 md:py-20 px-4 md:px-8 bg-gray-50">
+      <section id="destination-section" className="py-16 md:py-20 px-4 md:px-8 bg-gray-50">
         <ScrollReveal>
           <div className="max-w-7xl mx-auto text-center">
             <div className="mb-4 text-xs font-semibold tracking-wider text-primary">DESTINATION</div>
@@ -213,14 +227,18 @@ function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-left mb-12">
               {[
-              { title: 'Malioboro', loc: 'Yogyakarta, Indonesia', price: 'Rp 100.000', image: 'Malioboro.jpg' },
-              { title: 'Keraton Yogyakarta', loc: 'Yogyakarta, Indonesia', price: 'Rp 50.000', image: 'keratonjg.jpg' },
-              { title: 'Pantai Parangtritis', loc: 'Yogyakarta, Indonesia', price: 'Rp 20.000', image: 'SunsetParanngTritis.jpg' },
-              { title: 'Candi Prambanan', loc: 'Yogyakarta, Indonesia', price: 'Rp 150.000', image: 'Prambanan.jpg' },
+              { title: 'Malioboro', loc: 'Yogyakarta, Indonesia', price: 'Rp 100.000', image: 'Malioboro.jpg', slug: 'malioboro' },
+              { title: 'Keraton Yogyakarta', loc: 'Yogyakarta, Indonesia', price: 'Rp 50.000', image: 'keratonjg.jpg', slug: 'keraton-yogyakarta' },
+              { title: 'Pantai Parangtritis', loc: 'Yogyakarta, Indonesia', price: 'Rp 20.000', image: 'SunsetParanngTritis.jpg', slug: 'pantai-parangtritis' },
+              { title: 'Candi Prambanan', loc: 'Yogyakarta, Indonesia', price: 'Rp 150.000', image: 'Prambanan.jpg', slug: 'candi-prambanan' },
             ].map((tour, idx) => (
-              <div key={idx} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition">
-                <div className="h-48">
-                  <img src={`/images/${tour.image}`} alt={tour.title} className="w-full h-full object-cover" />
+              <div
+                key={idx}
+                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer group"
+                onClick={() => navigate(`/destination/${tour.slug}`)}
+              >
+                <div className="h-48 overflow-hidden">
+                  <img src={`/images/${tour.image}`} alt={tour.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                 </div>
                   <div className="p-6">
                     <h3 className="font-bold text-lg mb-1">{tour.title}</h3>
@@ -239,7 +257,10 @@ function App() {
                 </div>
               ))}
             </div>
-            <button className="bg-primary text-white px-8 py-3 rounded-full flex items-center gap-2 hover:bg-secondary transition mx-auto cursor-pointer">
+            <button
+              onClick={() => navigate('/destination/malioboro')}
+              className="bg-primary text-white px-8 py-3 rounded-full flex items-center gap-2 hover:bg-secondary transition mx-auto cursor-pointer active:scale-95"
+            >
               Explore more <span>→</span>
             </button>
           </div>
