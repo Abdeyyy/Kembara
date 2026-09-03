@@ -1,3 +1,5 @@
+<img width="1267" height="707" alt="Screenshot 2026-09-03 102614" src="https://github.com/user-attachments/assets/16f23229-65e1-4f6d-b77d-7e262ebe69f3" />
+
 # Kembara 🗺️✨
 
 > **Jelajahi Pesona Nusantara dengan Sentuhan AI & Digitalisasi UMKM.**  
